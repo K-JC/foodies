@@ -4,10 +4,14 @@
 }
 
 .NavLink {
-    padding: 5px;
+    padding: 8px;
+    color: #87618d;
 }
 
 .Active i {
-    color: #2142b2;
+    color: #F2C6D0;
 }
 
+.Active {
+   color: #F2C6D0;
+}
