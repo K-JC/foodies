@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
-//import Alert from "react-bootstrap/Alert";
+import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -26,12 +26,15 @@ function SignInForm() {
     
     const history = useHistory();
 
+    const [errors, setErrors] = useState({});
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             await axios.post("/dj-rest-auth/login/", signInData);
             history.push("/");
         } catch (err) {
+            setErrors(err.response?.data);
         }
     };
 
@@ -60,6 +63,11 @@ function SignInForm() {
                         onChange={handleChange}
                     />
                 </Form.Group>
+                {errors.username?.map((message, idx) => (
+                  <Alert key={idx} variant="warning">
+                    {message}
+                  </Alert>
+                ))}
 
                 <Form.Group controlId="password">
                     <Form.Label className="d-none">Password</Form.Label>
@@ -72,12 +80,24 @@ function SignInForm() {
                         onChange={handleChange}
                     />
                 </Form.Group>
+                {errors.password?.map((message, idx) => (
+                  <Alert key={idx} variant="warning">
+                    {message}
+                  </Alert>
+                ))}
+
                 <Button 
                     className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
                     type="submit"
                 >
                     Sign In
                 </Button>
+                {errors.non_field_errors?.map((message, idx) => (
+                    <Alert key={idx} variant="warning" className="mt-3">
+                      {message}
+                    </Alert>
+                  ))}
+              
             </Form>
 
         </Container>
