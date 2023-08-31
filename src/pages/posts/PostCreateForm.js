@@ -19,8 +19,10 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 
+/**
+ * Form for posts creation
+ */
 function PostCreateForm() {
-
     const [errors, setErrors] = useState({});
 
     const [postData, setPostData] = useState({
@@ -42,6 +44,10 @@ function PostCreateForm() {
         });
     };
 
+   /**
+   * Change uploaded image or remove uploaded image by revoke
+   */
+
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(image);
@@ -51,6 +57,10 @@ function PostCreateForm() {
             });
         }
     };
+
+   /**
+   * submit the data to api for foodies
+   */
 
     const handleSubmit = async (event) => {
         event.preventDefault();

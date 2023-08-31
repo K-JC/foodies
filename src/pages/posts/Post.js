@@ -29,6 +29,11 @@ const Post = (props) => {
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
 
+ /**
+   * Like a post/post owner cannot like 
+   * their own post. Sends a request to the API
+   * Increases likes number by 1
+   */
     const handleLike = async () => {
         try {
             const { data } = await axiosRes.post("/likes/", { post: id} );
@@ -45,6 +50,11 @@ const Post = (props) => {
         }
     };
 
+ /**
+   * Unlike a post
+   * Sends a request to the API
+   * Decreases likes number by 1
+   */
     const handleUnlike = async () => {
         try {
             await axiosRes.delete(`/likes/${like_id}/`);

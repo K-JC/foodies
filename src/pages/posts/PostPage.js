@@ -9,6 +9,10 @@ import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 
+   /**
+   * Renders the post page with detail list
+   * of all posts made
+   */
 function PostPage() {
     const { id } = useParams();
     const [post, setPost] = useState({ results: [] });
