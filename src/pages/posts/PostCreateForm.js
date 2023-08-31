@@ -12,62 +12,93 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
+import { Image } from "react-bootstrap";
 
 function PostCreateForm() {
 
     const [errors, setErrors] = useState({});
-    
+
     const [postData, setPostData] = useState({
         title: "",
-        catagory: "",
+        category: "",
         content: "",
         image: "",
-});
+    });
 
+    const { title, category, content, image } = postData;
+
+    const handleChange = (event) => {
+        setPostData({
+            ...postData,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const handleChangeImage = (event) => {
+        if (event.target.files.length) {
+            URL.revokeObjectURL(image);
+            setPostData({
+                ...postData,
+                image: URL.createObjectURL(event.target.files[0]),
+            });
+        }
+    };
 
     const textFields = (
         <div className="text-center">
             <Form.Group>
                 <Form.Label>Title</Form.Label>
-                <Form.Control type="text" name="title" />
+                <Form.Control
+                    type="text"
+                    name="title"
+                    value={title}
+                    onChange={handleChange}
+                />
             </Form.Group>
 
             <Form.Group>
                 <Form.Label>Choose a category</Form.Label>
-                <Form.Control as="select" content="catagory">
-                <option value="Choose a category">Select a category</option>
-                <option value="Cakes">Cakes</option>
-                <option value="Cookies">Cookies</option>
-                <option value="Tarts">Tarts</option>
-                <option value="Cupcakes">Cupcakes</option>
-                <option value="Doughnuts">Doughnuts</option>
-                <option value="Pies">Pies</option>
-                <option value="Holidays">Holidays</option>
-                <option value="Scones">Scones</option>
-                <option value="Pastries">Pastries</option>
-                <option value="Other">Other</option>
+                <Form.Control
+                    as="select"
+                    name="category"
+                    aria-label="category"
+                    value={category}
+                    onChange={handleChange}
+                >
+                    <option value="Choose a category">Select a category</option>
+                    <option value="Cakes">Cakes</option>
+                    <option value="Cookies">Cookies</option>
+                    <option value="Tarts">Tarts</option>
+                    <option value="Cupcakes">Cupcakes</option>
+                    <option value="Doughnuts">Doughnuts</option>
+                    <option value="Pies">Pies</option>
+                    <option value="Holidays">Holidays</option>
+                    <option value="Scones">Scones</option>
+                    <option value="Pastries">Pastries</option>
+                    <option value="Other">Other</option>
                 </Form.Control>
-                
-                
             </Form.Group>
 
             <Form.Group>
                 <Form.Label>Describe your creation</Form.Label>
-                <Form.Control as="textarea" rows={6} name="content" />
+                <Form.Control
+                    as="textarea"
+                    rows={6}
+                    name="content"
+                    value={content}
+                    onChange={handleChange}
+                />
             </Form.Group>
-
-            
-
 
 
             <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
                 onClick={() => { }}
             >
-                cancel
+                Cancel
             </Button>
             <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                create
+                Create
             </Button>
         </div>
     );
@@ -80,13 +111,37 @@ function PostCreateForm() {
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
                     >
                         <Form.Group className="text-center">
+                            {image ? (
+                                <>
+                                    <figure>
+                                        <Image className={appStyles.Image}
+                                            src={image}
+                                            rounded
+                                        />
+                                    </figure>
+                                    <div>
+                                        <Form.Label
+                                            className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                                            htmlFor="image-upload"
+                                        >
+                                            Change image
+                                        </Form.Label>
+                                    </div>
+                                </>
+                            ) : (
+                                <Form.Label
+                                    className="d-flex justify-content-center"
+                                    htmlFor="image-upload"
+                                >
+                                    <Asset src={Upload} message="To upload an image click here" />
+                                </Form.Label>
+                            )}
 
-                            <Form.Label
-                                className="d-flex justify-content-center"
-                                htmlFor="image-upload"
-                            >
-                                <Asset src={Upload} message="To upload an image click here" />
-                            </Form.Label>
+                            <Form.File
+                                id="image-upload"
+                                accept="image/*"
+                                onChange={handleChangeImage}
+                            />
 
                         </Form.Group>
                         <div className="d-md-none">{textFields}</div>
