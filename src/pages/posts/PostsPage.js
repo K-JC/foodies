@@ -13,6 +13,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 import NoResults from "../../assets/not-found.png";
 import Asset from "../../components/Asset";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 /**
  * Renders the post page 
@@ -46,7 +48,7 @@ function PostsPage({ message, filter = "" }) {
         }
         setHasLoaded(false);
         const timer = setTimeout(() => {
-            fetchPosts();   
+            fetchPosts();
         }, 1000);
         return () => {
             clearTimeout(timer);
@@ -59,26 +61,35 @@ function PostsPage({ message, filter = "" }) {
                 <p>Popular profiles mobile</p>
                 <i className={`fa-solid fa-magnifying-glass ${styles.SearchIcon}`} />
                 <Form className={styles.SearchBar}
-                onSubmit={(event) => event.preventDefault()} >
-                    <Form.Control 
-                    type="text" 
-                    className="mr-sm-2"
-                    placeholder="Search posts"
-                    value={query}
-                    onChange={(event => setQuery(event.target.value))}
+                    onSubmit={(event) => event.preventDefault()} >
+                    <Form.Control
+                        type="text"
+                        className="mr-sm-2"
+                        placeholder="Search posts"
+                        value={query}
+                        onChange={(event => setQuery(event.target.value))}
                     />
                 </Form>
-                
+
                 {hasLoaded ? (
                     <>
                         {posts.results.length ? (
-                            posts.results.map((post) => (
-                                <Post key={post.id} {...post} setPosts={setPosts} />
-                            ))
+                            <InfiniteScroll
+                                children={
+                                    posts.results.map((post) => (
+                                        <Post key={post.id} {...post} setPosts={setPosts} />
+                                    ))
+                                }
+                                dataLength={posts.results.length}
+                                loader={<Asset spinner />}
+                                hasMore={!!posts.next}
+                                next={() => fetchMoreData(posts, setPosts)}
+                            />
+
                         ) : (
-                        <Container className={appStyles.Content}>
-                            <Asset src={NoResults} message={message} />
-                        </Container>
+                            <Container className={appStyles.Content}>
+                                <Asset src={NoResults} message={message} />
+                            </Container>
                         )}
                     </>
                 ) : (
