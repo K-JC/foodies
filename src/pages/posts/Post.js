@@ -31,7 +31,7 @@ const Post = (props) => {
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
 
-    /**
+   /**
    * Edit or delete logged users 
    * own post.
    */
@@ -49,7 +49,7 @@ const Post = (props) => {
         }
       };
 
- /**
+   /**
    * Like a post/post owner cannot like 
    * their own post. Sends a request to the API
    * Increases likes number by 1
@@ -70,7 +70,7 @@ const Post = (props) => {
         }
     };
 
- /**
+   /**
    * Unlike a post
    * Sends a request to the API
    * Decreases likes number by 1

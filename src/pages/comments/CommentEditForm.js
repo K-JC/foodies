@@ -4,7 +4,10 @@ import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
-
+ /**
+   * Function for comment edit
+   * submit this change 
+   */
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
 

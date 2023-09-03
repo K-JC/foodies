@@ -8,6 +8,11 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
+
+  /**
+   * function to create a comment
+   * logged in user
+   */
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
@@ -15,7 +20,10 @@ function CommentCreateForm(props) {
   const handleChange = (event) => {
     setContent(event.target.value);
   };
-
+  /**
+   * Submits comment and adds comment to 
+   * total number of comments. Will go up by one
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
