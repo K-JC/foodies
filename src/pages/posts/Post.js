@@ -14,7 +14,7 @@ const Post = (props) => {
         owner,
         profile_id,
         profile_image,
-        comment_count,
+        comments_count,
         likes_count,
         like_id,
         ///  like_comments,
@@ -138,7 +138,7 @@ const Post = (props) => {
                 <Link to={`/posts/${id}`}>
                     <i className="fa-solid fa-comment" />
                 </Link>
-                {comment_count}
+                {comments_count}
             </div>
         </Card.Body>
     </Card>
