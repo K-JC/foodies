@@ -1,5 +1,8 @@
 import { axiosReq } from "../api/axiosDefaults"
-
+/**
+ *  Renders/updates data for the InfiniteScroll component
+ *  Sends request to the next page of results
+*/
 export const fetchMoreData = async (resource, setResource) => {
     try {
         const {data} = await axiosReq.get(resource.next);

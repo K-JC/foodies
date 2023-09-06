@@ -7,7 +7,10 @@ import Avatar from "../../components/Avatar";
 import { Button } from "react-bootstrap";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
 
-
+/**
+ * Profile avatar visible to all users and the
+ * follow/unfollow button once signed in
+ */
 const Profile = (props) => {
     const { profile, mobile, imageSize=55 } = props;
     const { id, following_id, image, owner } = profile;

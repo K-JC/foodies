@@ -1,7 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-
+/**
+ * Access profile data in several places around the application  
+ * and in sync across all the components
+ */
 export const ProfileDataContext = createContext();
 export const SetProfileDataContext = createContext();
 

@@ -22,6 +22,11 @@ import { fetchMoreData } from "../../utils/utils";
 import Post from "../posts/Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 
+/**
+ * Renders the ProfilePage and displays the users' profile
+ * Shows list of all the posts
+ */
+
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const currentUser = useCurrentUser();
