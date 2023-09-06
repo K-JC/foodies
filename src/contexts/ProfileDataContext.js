@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { followHelper } from "../utils/utils";
 /**
  * Access profile data in several places around the application  
  * and in sync across all the components
@@ -27,31 +28,23 @@ export const ProfileDataProvider = ({ children }) => {
 
     setProfileData(prevState => ({
       ...prevState,
+      pageProfile: {
+        results: prevState.popularProfiles.results.map((profile) =>
+        followHelper(profile, clickedProfile, data.id)
+        ),
+    
+      },
       popularProfiles: {
         ...prevState.popularProfiles,
-        results: prevState.popularProfiles.results.map(profile => {
-          return profile.id === clickedProfile.id
-          ?
-            {
-              ...profile,
-              followers_count: profile.followers_count + 1,
-              following_id: data.id
-            }
-          : profile.is_owner
-          ?
-
-            {
-              ...profile, following_count: profile.following_count + 1
-            }
-          :
-           profile;
-        }),
+        results: prevState.popularProfiles.results.map((profile) =>
+        followHelper(profile, clickedProfile, data.id)
+        ),
       },
     }));
     } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-  }
+  };
 
   useEffect(() => {
     const handleMount = async () => {
