@@ -16,6 +16,7 @@ import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 /**
  * Renders the post page 
@@ -30,6 +31,7 @@ function PostsPage({ message, filter = "" }) {
     const { pathname } = useLocation();
 
     const [query, setQuery] = useState("");
+    const currentUser = useCurrentUser();
 
     /**
     * Gets posts from the API.
@@ -44,7 +46,7 @@ function PostsPage({ message, filter = "" }) {
                 setPosts(data);
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err);
+               // console.log(err);
             }
         }
         setHasLoaded(false);
@@ -54,7 +56,7 @@ function PostsPage({ message, filter = "" }) {
         return () => {
             clearTimeout(timer);
         };
-    }, [filter, query, pathname]);
+    }, [filter, query, pathname, currentUser]);
 
     return (
         <Row className="h-100">
