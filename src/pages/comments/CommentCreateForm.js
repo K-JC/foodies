@@ -8,6 +8,10 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
+import InputEmoji from "react-input-emoji"
+import EmojiPicker from "emoji-picker-react";
+
+
 
   /**
    * function to create a comment
@@ -20,6 +24,8 @@ function CommentCreateForm(props) {
   const handleChange = (event) => {
     setContent(event.target.value);
   };
+
+
   /**
    * Submits comment and adds comment to 
    * total number of comments. Will go up by one
@@ -62,7 +68,8 @@ function CommentCreateForm(props) {
             as="textarea"
             value={content}
             onChange={handleChange}
-            rows={2}
+            rows={2} 
+            
           />
         </InputGroup>
       </Form.Group>
