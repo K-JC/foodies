@@ -38,11 +38,11 @@ const ProfileEditForm = () => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
-          const { data } = await axiosReq.get(`/profiles/${id}/`);
+          const { data } = await axiosReq.get(`/profiles/${id}`);
           const { name, content, image } = data;
           setProfileData({ name, content, image });
         } catch (err) {
-          console.log(err);
+         // console.log(err);
           history.push("/");
         }
       } else {
@@ -71,14 +71,14 @@ const ProfileEditForm = () => {
     }
 
     try {
-      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+      const { data } = await axiosReq.put(`/profiles/${id}`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_image: data.image,
       }));
       history.goBack();
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       setErrors(err.response?.data);
     }
   };
@@ -105,10 +105,10 @@ const ProfileEditForm = () => {
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={() => history.goBack()}
       >
-        cancel
+        Cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        save
+        Save
       </Button>
     </>
   );
