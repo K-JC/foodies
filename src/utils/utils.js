@@ -1,4 +1,6 @@
 import { axiosReq } from "../api/axiosDefaults"
+import jwtDecode from "jwt-decode";
+
 /**
  *  Renders/updates data for the InfiniteScroll component
  *  Sends request to the next page of results
