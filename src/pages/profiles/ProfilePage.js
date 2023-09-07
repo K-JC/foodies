@@ -21,6 +21,7 @@ import NoResults from "../../assets/not-found.png";
 import { fetchMoreData } from "../../utils/utils";
 import Post from "../posts/Post";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 /**
  * Renders the ProfilePage and displays the users' profile
@@ -60,6 +61,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
+    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
