@@ -1,0 +1,17 @@
+.LandingImage {
+    height: 400px;
+    width: 80%;
+    border-radius: 30px;
+  }
+
+.Text {
+  color: #87618d;
+  }
+
+  /* For screen size of smaller screen */
+@media all and (max-width: 440px) {
+  .LandingImage {
+      width: 200px;
+      height: 250px;
+  }
+  } 

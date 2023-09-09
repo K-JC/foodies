@@ -15,6 +15,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
+import LandingPage from "./pages/landingPage/LandingPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -25,7 +26,7 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-          <Route render={() => <LandingPage />} />
+        <Route exact path="/landingpage/" render={() => <LandingPage />} />
           <Route
             exact path="/"
             render={() => (<PostsPage
