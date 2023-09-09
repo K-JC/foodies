@@ -25,6 +25,7 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
+          <Route render={() => <LandingPage />} />
           <Route
             exact path="/"
             render={() => (<PostsPage
