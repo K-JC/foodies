@@ -8,8 +8,8 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
-import InputEmoji from "react-input-emoji"
-import EmojiPicker from "emoji-picker-react";
+//import InputEmoji from "react-input-emoji"
+//import EmojiPicker from "emoji-picker-react";
 
 
 
