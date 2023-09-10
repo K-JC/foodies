@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
+import Messages from "../../components/Messages";
 
 import Image from "react-bootstrap/Image";
 import Upload from "../../assets/upload.png";
@@ -38,6 +39,7 @@ function PostCreateForm() {
 
     const imageInput = useRef(null);
     const history = useHistory();
+    const [showAlert, setShowAlert] = useState(false);
 
     const handleChange = (event) => {
         setPostData({
@@ -75,7 +77,10 @@ function PostCreateForm() {
 
         try {
             const { data } = await axiosReq.post("/posts/", formData);
-            history.push(`/posts/${data.id}`);
+            setShowAlert(true);
+            setTimeout(function() {
+              history.push(`/posts/${data.id}`);
+            }, 1500);
         } catch (err) {
            // console.log(err);
             if (err.response?.status !== 401) {
@@ -161,6 +166,10 @@ function PostCreateForm() {
     );
 
     return (
+        <Container>
+    {showAlert && (
+        <Messages type="success" message="Your post has been successfully posted." />
+    )}
         <Form onSubmit={handleSubmit}>
             <Row>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
@@ -214,6 +223,7 @@ function PostCreateForm() {
                 </Col>
             </Row>
         </Form>
+        </Container>
     );
 }
 
