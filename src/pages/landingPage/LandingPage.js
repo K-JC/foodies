@@ -18,15 +18,19 @@ const LandingPage = () => {
                 <img
                     src={foodies}
                     className={styles.LandingImage}
-                    alt="Pic with quotes about childhood memory"
+                    alt="foodies logo with text"
                 />
             </Col>
             <Col lg={6} sm={12}>
                 <div className={`${styles.Text} text-center mt-3`}
                 >
                     <h1 className="mb-3">Foodies</h1>
-                    <h4 className="mb-3">A place where the bakers from all walks of life come
-                    together, to share their creations with the world.</h4>
+                    <h5 className="mb-3">A place where bakers from all walks of life come
+                    together, to share their creations with the world. Post your creations,
+                    support one another by liking and commenting on posts.
+                    Get inspired and join us today. 
+                    </h5>
+                    <br></br>
                     <Link to="/signup">
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Bright} mx-3 mb-2 py-2`}

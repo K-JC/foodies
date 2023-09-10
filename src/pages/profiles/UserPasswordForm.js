@@ -14,7 +14,10 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
+import Messages from "../../components/Messages";
+
 const UserPasswordForm = () => {
+   const [showAlert, setShowAlert] = useState(false);
   const history = useHistory();
   const { id } = useParams();
   const currentUser = useCurrentUser();
@@ -44,7 +47,10 @@ const UserPasswordForm = () => {
     event.preventDefault();
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
+      setShowAlert(true);
+      setTimeout(function() {
       history.goBack();
+    }, 1500);
     } catch (err) {
       // console.log(err);
       setErrors(err.response?.data);
@@ -52,14 +58,18 @@ const UserPasswordForm = () => {
   };
 
   return (
+    <Container>
+    {showAlert && (
+        <Messages type="success" message="Your password has been updated." />
+    )}
     <Row>
       <Col className="py-2 mx-auto text-center" md={6}>
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label>New password</Form.Label>
+              <Form.Label>New Password</Form.Label>
               <Form.Control
-                placeholder="new password"
+                placeholder="New Password"
                 type="password"
                 value={new_password1}
                 onChange={handleChange}
@@ -72,9 +82,9 @@ const UserPasswordForm = () => {
               </Alert>
             ))}
             <Form.Group>
-              <Form.Label>Confirm password</Form.Label>
+              <Form.Label>Confirm Password</Form.Label>
               <Form.Control
-                placeholder="confirm new password"
+                placeholder="Confirm New Password"
                 type="password"
                 value={new_password2}
                 onChange={handleChange}
@@ -102,6 +112,7 @@ const UserPasswordForm = () => {
         </Container>
       </Col>
     </Row>
+    </Container>
   );
 };
 

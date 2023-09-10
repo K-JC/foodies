@@ -12,7 +12,6 @@ import { axiosRes } from "../../api/axiosDefaults";
 //import EmojiPicker from "emoji-picker-react";
 
 
-
   /**
    * function to create a comment
    * logged in user
@@ -81,6 +80,7 @@ function CommentCreateForm(props) {
         Add Comment
       </button>
     </Form>
+   
   );
 }
 

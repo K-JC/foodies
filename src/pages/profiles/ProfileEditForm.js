@@ -17,6 +17,7 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import Messages from "../../components/Messages";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -24,6 +25,7 @@ const ProfileEditForm = () => {
   const { id } = useParams();
   const history = useHistory();
   const imageFile = useRef();
+  const [showAlert, setShowAlert] = useState(false);
 
   const [profileData, setProfileData] = useState({
     name: "",
@@ -76,7 +78,10 @@ const ProfileEditForm = () => {
         ...currentUser,
         profile_image: data.image,
       }));
+      setShowAlert(true);
+      setTimeout(function() {
       history.goBack();
+    }, 1500);
     } catch (err) {
       //console.log(err);
       setErrors(err.response?.data);
@@ -114,6 +119,10 @@ const ProfileEditForm = () => {
   );
 
   return (
+    <Container>
+    {showAlert && (
+        <Messages type="success" message="Your profile has been updated." />
+    )}
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
@@ -159,6 +168,7 @@ const ProfileEditForm = () => {
         </Col>
       </Row>
     </Form>
+    </Container>
   );
 };
 

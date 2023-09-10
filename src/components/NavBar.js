@@ -46,8 +46,11 @@ const NavBar = () => {
 
     const loggedOutIcons = (
         <>
-            <NavLink className={styles.NavLink} activeClassName={styles.Active} to="/landingpage">
+            <NavLink className={styles.NavLink} activeClassName={styles.Active} to="/">
                 <i className="fa-solid fa-house"></i>Home
+            </NavLink>
+            <NavLink className={styles.NavLink} activeClassName={styles.Active} to="/landingpage">
+                <i className="fa-solid fa-cookie-bite"></i>About
             </NavLink>
             <NavLink className={styles.NavLink} activeClassName={styles.Active}
                 to="/signin">
