@@ -7,17 +7,13 @@
     font-weight: bold;
   }
   
-.info {
-    background-color: #87618d;
-  }
-
 .success {
-    background-color: rgb(192, 239, 192);
+    background-color: #F2C6D0;
   }
 
 .closebtn {
     margin-left: 15px;
-    color: #F2C6D0;
+    color: #87618d;
     font-weight: bold;
     float: right;
     font-size: 22px;
