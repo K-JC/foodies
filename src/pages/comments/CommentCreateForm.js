@@ -8,20 +8,23 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
-//import InputEmoji from "react-input-emoji"
-//import EmojiPicker from "emoji-picker-react";
+import Picker from "emoji-picker-react";
 
-
-  /**
-   * function to create a comment
-   * logged in user
-   */
+/**
+ * function to create a comment
+ * logged in user
+ */
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
 
   const handleChange = (event) => {
     setContent(event.target.value);
+  };
+
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const onEmojiClick = (event, emojiObject) => {
+    setChosenEmoji(emojiObject);
   };
 
 
@@ -50,7 +53,7 @@ function CommentCreateForm(props) {
       }));
       setContent("");
     } catch (err) {
-     // console.log(err);
+      // console.log(err);
     }
   };
 
@@ -67,11 +70,21 @@ function CommentCreateForm(props) {
             as="textarea"
             value={content}
             onChange={handleChange}
-            rows={2} 
-            
+            rows={2}
           />
+        <div>
+            {chosenEmoji ? (
+                <span>Emoji: {chosenEmoji.emoji}</span>
+            ) : (
+                <span>No Emoji</span>
+            )}
+            <Picker onEmojiClick={onEmojiClick} />
+        </div>
+          
         </InputGroup>
       </Form.Group>
+
+
       <button
         className={`${styles.Button} btn d-block ml-auto`}
         disabled={!content.trim()}
@@ -80,7 +93,7 @@ function CommentCreateForm(props) {
         Add Comment
       </button>
     </Form>
-   
+
   );
 }
 
