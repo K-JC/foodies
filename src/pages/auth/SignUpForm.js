@@ -4,8 +4,13 @@ import signup from "../../assets/signup.jpg"
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-
-import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Alert  from "react-bootstrap/Alert";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 
@@ -46,11 +51,11 @@ const SignUpForm = () => {
 
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="username">
-                            <Form.Label className="d-none">username</Form.Label>
+                            <Form.Label className="d-none">Username</Form.Label>
                             <Form.Control
                                 className={styles.Input}
                                 type="text"
-                                placeholder="Username"
+                                placeholder="username"
                                 name="username"
                                 value={username}
                                 onChange={handleChange}
@@ -67,7 +72,7 @@ const SignUpForm = () => {
                             <Form.Control
                                 className={styles.Input}
                                 type="password"
-                                placeholder="Password"
+                                placeholder="password"
                                 name="password1"
                                 value={password1}
                                 onChange={handleChange}
@@ -84,7 +89,7 @@ const SignUpForm = () => {
                             <Form.Control
                                 className={styles.Input}
                                 type="password"
-                                placeholder="Confirm Password"
+                                placeholder="confirm password"
                                 name="password2"
                                 value={password2}
                                 onChange={handleChange}

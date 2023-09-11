@@ -40,7 +40,7 @@ function SignInForm() {
             const {data} = await axios.post("/dj-rest-auth/login/", signInData);
             setCurrentUser(data.user);
             setTokenTimestamp(data);
-            history.goBack();
+            history.push("/");
         } catch (err) {
             setErrors(err.response?.data);
         }
@@ -63,7 +63,7 @@ function SignInForm() {
                     <Form.Label className="d-none">Username</Form.Label>
                     <Form.Control 
                         type="text" 
-                        placeholder="Username"
+                        placeholder="username"
                         name="username" 
                         className={styles.Input}
                         value={username}
@@ -80,7 +80,7 @@ function SignInForm() {
                     <Form.Label className="d-none">Password</Form.Label>
                     <Form.Control 
                         type="password" 
-                        placeholder="Password" 
+                        placeholder="password" 
                         name="password"
                         className={styles.Input}
                         value={password}
