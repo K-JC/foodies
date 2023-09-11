@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
-
 /**
  * Checks user login status with refresh token
  * Redirects user to the homepage
