@@ -3,7 +3,7 @@
     border-bottom: 3px #87618d solid;
   }
   
-  .Button {
+.Button {
     border: none;
     background-color: #87618d;
     color: aliceblue;
@@ -13,7 +13,7 @@
     margin: 5px;
   }
   
-  .Button:hover {
+.Button:hover {
     cursor: pointer;
     background-color: #F2C6D0;
     color: #242a3d;
