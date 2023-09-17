@@ -20,8 +20,8 @@ const Comment = (props) => {
     id,
     setPost,
     setComments,
-    comment_like_id,
-    comment_like_count,
+    like_comments_id,
+    like_comments_count,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -73,9 +73,9 @@ const Comment = (props) => {
             ? {
               ...comment,
               comment_like_count
-                : comment.comment_like_count
+                : comment.like_comments_count
                 + 1,
-              comment_like_id
+                like_comments_id
                 : data.id,
             }
             : comment;
@@ -95,16 +95,16 @@ const Comment = (props) => {
    */
   const handleUnlike = async () => {
     try {
-      await axiosRes.delete(`/like_comments/${comment_like_id}`);
+      await axiosRes.delete(`/like_comments/${like_comments_id}`);
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.map((comment) => {
           return comment.id === id
             ? {
               ...comment,
-              comment_like_count: comment.comment_like_count
+              like_comments_count: comment.like_comments_count
                 - 1,
-                comment_like_id
+                like_comments_id
 
                 : null,
             }
@@ -131,7 +131,7 @@ const Comment = (props) => {
               <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own comment!</Tooltip>}>
                 <i className="fa-solid fa-heart" />
               </OverlayTrigger>
-            ) : comment_like_id
+            ) : like_comments_id
             ? (
               <span onClick={handleUnlike}>
                 <i className={`fa-solid fa-heart  ${styles.Heart}`} />
@@ -145,7 +145,7 @@ const Comment = (props) => {
                 <i className="fa-solid fa-heart" />
               </OverlayTrigger>
             )}
-            {comment_like_count}
+            {like_comments_count}
           </div>
 
           {showEditForm ? (
