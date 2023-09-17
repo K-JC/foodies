@@ -10,7 +10,7 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Alert  from "react-bootstrap/Alert";
+import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 
@@ -100,6 +100,7 @@ const SignUpForm = () => {
                                 {message}
                             </Alert>
                         ))}
+
 
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
